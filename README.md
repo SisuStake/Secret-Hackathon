@@ -16,7 +16,7 @@ An NFT that can wrap LP tokens from the [Shade Pools]([url](https://app.shadepro
 
 ### Product Functions: 
 
-1. Mint an NFT (AI generated)
+1. Mint an NFT (AI generated) for XXX amount of SCRT tokens
 
 2. Wrap LP Token into NFT 
 
