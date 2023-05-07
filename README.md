@@ -28,7 +28,7 @@ An NFT that can wrap LP tokens from the [Shade Pools]([url](https://app.shadepro
 
     - Profit/Loss
 
-    - Projected APR (Day %, Week %, Monthly %, Quarterly %, annual %)
+    - Projected APR (Day %, Week %, Monthly %, Quarterly %, Annual %)
 
     - Claimable tokens
 
