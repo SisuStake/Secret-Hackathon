@@ -34,7 +34,7 @@ An NFT that can wrap LP tokens from the [Shade Pools]([url](https://app.shadepro
 
     - Be able to use NFT with wrapped assets to borrow SILK using Shade Borrow with an LTV of 90%
 
-5. Be able to borrow SILK using the NFT
+5. Be able to borrow SILK using the NFT up to a 90% LTV
 
 6. Bonus Features: 
 
