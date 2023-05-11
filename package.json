@@ -1,0 +1,21 @@
+{
+  "name": "Secret-Hackathon",
+  "version": "0.0.0",
+  "description": "Sisu Stake Secret Hackathon Team Project Overview",
+  "type": "module",
+  "private": "true",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SisuStake/Secret-Hackathon.git"
+  },
+  "author": "Samuel Genest <is.genest@gmail.com> (http://github.com/sgen)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/SisuStake/Secret-Hackathon/issues"
+  },
+  "homepage": "https://github.com/SisuStake/Secret-Hackathon#readme"
+}
