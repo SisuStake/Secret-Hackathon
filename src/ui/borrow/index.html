@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-Us">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Stable Angel</title>
+
+  <meta name="description" content="A Secret Stablecoin Wrapper">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  <style>
+    /* Track Styles */
+    /* Chrome, Safari, Opera, and Edge Chromium */
+    input[type="range"]::-webkit-slider-runnable-track {
+      background: linear-gradient(90deg, #ADFF2F 0%, #FF4500 100%);
+      height: 0.5rem;
+    }
+
+    /* Firefox */
+    input[type="range"]::-moz-range-track {
+      background: linear-gradient(90deg, #ADFF2F 0%, #FF4500 100%);
+      height: 0.5rem;
+    }
+    /* Thumb Styles */
+    /* Chrome, Safari, Opera, and Edge Chromium */
+    input[type="range"]::-webkit-slider-thumb {
+       -webkit-appearance: none; /* Override default look */
+       appearance: none;
+       margin-top: -8px; /* Centers thumb on the track */
+       background-color: rgb(0, 0, 0);
+       border: 1px solid rgb(225, 225, 225);
+       height: 1.5rem;
+       width: 1.5rem;
+    }
+    /* Firefox */
+    input[type="range"]::-moz-range-thumb {
+        border: none; /*Removes extra border that FF applies*/
+        border-radius: 0; /*Removes default border-radius that FF applies*/
+        background-color: rgb(0, 0, 0);
+        border: 1px solid rgb(225, 225, 225);
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+  </style>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="d-flex flex-column flex-shrink-0 p-3" style="position: absolute; max-width: 240px; min-height: 100vh; border-right: solid 1px rgb(0, 0, 0)">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none"><span>Stable Angel</span></a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item"><a href="/mint-nft" class="nav-link">Mint NFT</a></li>
+      <li class="nav-item"><a href="/wrap-lp" class="nav-link">Wrap LP</a></li>
+      <li class="nav-item"><a href="/borrow" class="nav-link">Borrow SILK</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Portfolio</a></li>
+    </ul>
+  </div>
+
+  <main style="margin-left: 240px; padding: 16px;">
+    <div class="container">
+      <table id="portfolio-table" class="table accordion">
+        <thead>
+          <th scope="col">Collateral</th>
+          <th scope="col">Available Silk</th>
+          <th scope="col">Interest Rate</th>
+          <th scope="col">Borrow Fee</th>
+          <th scope="col">Vault Utilization</th>
+          <th scope="col">Max LTV</th>
+        </thead>
+        <tbody>
+          <tr id="portfolio-table-row-stkd-secret" data-bs-toggle="collapse" data-bs-target="#portfolio-table-row-stkd-secret-collapse">
+            <td>stkd-SCRT</td>
+            <td>23,456</td>
+            <td>0%</td>
+            <td>0%</td>
+            <td>98.7%</td>
+            <td>50%</td>
+          </tr>
+          <tr id="portfolio-table-row-stkd-secret-collapse" class="collapse accordion-collapse">
+            <td colspan="6">
+              <div class="form-class form-switch mb-3" style="display: flex; flex-flow: row; justify-content: space-between; max-width: 300px;">
+                <label for="widthdrawl-deposit-switch" class="form-check-label">Withdrawl</label>
+                <input type="checkbox" id="withdrawl-deposit-switch" class="form-check-input" style="margin-left: 0;">
+                <label for="widthdrawl-deposit-switch" class="form-check-label">Deposit</label>
+              </div>
+              <form action="#" id="portfolio-table-row-stkd-secret-borrow-withdraw-form" class="p-3" style="border: 1px solid rgb(0, 0, 0); border-radius: 16px; display: inline-block;">
+                <fieldset class="mb-3 p-3" style="border: 1px solid rgb(0, 0, 0); border-radius: 8px;">
+                  <legend>Deposit Collateral</legend>
+                  <select name="collateral-type" id="collateral-type">
+                    <option value="scrt">SCRT</option>
+                    <option value="stkd-scrt">stkd-SCRT</option>
+                    <option value="btc">BTC</option>
+                  </select>
+                  <input type="number" id="collateral-value" step="0.01" placeholder="0.00">
+                </fieldset>
+                <div class="container" style="max-width: 300px; text-align: center;">
+                  <label for="ltv-range" class="form-label">Loan-to-Value</label>
+                  <input type="range" class="form-range" id="ltv-range">
+                </div>
+                <fieldset class="mb-3 p-3" style="border: 1px solid rgb(0, 0, 0); border-radius: 8px;">
+                  <legend>Borrow SILK</legend>
+                  <select name="loan-type" id="loan-type" style="">
+                    <option value="scrt">SCRT</option>
+                    <option value="stkd-scrt">stkd-SCRT</option>
+                    <option value="btc">BTC</option>
+                  </select>
+                  <input type="number" id="loan-value" step="0.01" placeholder="0.00">
+                </fieldset>
+                <input type="submit" value="Deposit Collateral & Borrow">
+              </form>
+              <form action="#" id="portfolio-table-row-stkd-secret-borrow-withdraw-form" class="p-3" style="border: 1px solid rgb(0, 0, 0); border-radius: 16px; display: inline-block;">
+                <fieldset class="mb-3 p-3" style="border: 1px solid rgb(0, 0, 0); border-radius: 8px;">
+                  <legend>Withdraw Collateral</legend>
+                  <select name="collateral-type" id="collateral-type">
+                    <option value="scrt">SCRT</option>
+                    <option value="stkd-scrt">stkd-SCRT</option>
+                    <option value="btc">BTC</option>
+                  </select>
+                  <input type="number" id="collateral-value" step="0.01" placeholder="0.00">
+                </fieldset>
+                <div class="container" style="max-width: 300px; text-align: center;">
+                  <label for="ltv-range" class="form-label">Loan-to-Value</label>
+                  <input type="range" class="form-range" id="ltv-range">
+                </div>
+                <fieldset class="mb-3 p-3" style="border: 1px solid rgb(0, 0, 0); border-radius: 8px;">
+                  <legend>Repay SILK</legend>
+                  <select name="loan-type" id="loan-type" style="">
+                    <option value="scrt">SCRT</option>
+                    <option value="stkd-scrt">stkd-SCRT</option>
+                    <option value="btc">BTC</option>
+                  </select>
+                  <input type="number" id="loan-value" step="0.01" placeholder="0.00">
+                </fieldset>
+                <input type="submit" value="Connect Wallet">
+              </form>
+              <div id="transaction-information" class="card p-3">
+                <div class="row" style="display: flex; flex-flow: row; justify-content: space-between;">
+                  <span style="display: inline-block; width: auto;">New Liquidation Price:</span><span style="display: inline-block; width: auto;">$0.1234</span>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr id="portfolio-table-row-silk" data-bs-toggle="collapse" data-bs-target="#portfolio-table-row-silk-collapse">
+            <td>SILK</td>
+            <td>23,456</td>
+            <td>0%</td>
+            <td>0%</td>
+            <td>98.7%</td>
+            <td>50%</td>
+          </tr>
+          <tr id="portfolio-table-row-silk-collapse" class="collapse accordion-collapse">
+            <td colspan="6">
+              <div id="transaction-information" class="card p-3">
+                <div class="row" style="display: flex; flex-flow: row; justify-content: space-between;">
+                  <span style="display: inline-block; width: auto;">Fee Slippage:</span><span style="display: inline-block; width: auto;">1%</span>
+                </div>
+                <div class="row" style="display: flex; flex-flow: row; justify-content: space-between;">
+                  <span style="display: inline-block; width: auto;">Borrow Fee % (w/ Slippage):</span><span style="display: inline-block; width: auto;">1%</span>
+                </div>
+                <div class="row" style="display: flex; flex-flow: row; justify-content: space-between;">
+                  <span style="display: inline-block; width: auto;">Borrow Fee (in Silk):</span><span style="display: inline-block; width: auto;">0</span>
+                </div>
+                <div class="row" style="display: flex; flex-flow: row; justify-content: space-between;">
+                  <span style="display: inline-block; width: auto;">Current LTV:</span><span style="display: inline-block; width: auto;">25.11%</span>
+                </div>
+                <div class="row" style="display: flex; flex-flow: row; justify-content: space-between;">
+                  <span style="display: inline-block; width: auto;">New LTV:</span><span style="display: inline-block; width: auto;">25.11%</span>
+                </div>
+                <div class="row" style="display: flex; flex-flow: row; justify-content: space-between;">
+                  <span style="display: inline-block; width: auto;">Current Price:</span><span style="display: inline-block; width: auto;">$0.789</span>
+                </div>
+                <div class="row" style="display: flex; flex-flow: row; justify-content: space-between;">
+                  <span style="display: inline-block; width: auto;">New Liquidation Price:</span><span style="display: inline-block; width: auto;">$0.1234</span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>
