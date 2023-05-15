@@ -21,6 +21,6 @@
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item"><a href="/mint-nft" class="nav-link" class:active={$page.url.pathname === '/mint-nft'}>Mint NFT</a></li>
     <li class="nav-item"><a href="/wrap-lp" class="nav-link" class:active={$page.url.pathname === '/wrap-lp'}>Wrap LP</a></li>
-    <li class="nav-item"><a href="/" class="nav-link" class:active={$page.url.pathname === '/portfolio'}>Portfolio</a></li>
+    <li class="nav-item"><a href="/portfolio" class="nav-link" class:active={$page.url.pathname === '/portfolio'}>Portfolio</a></li>
   </ul>
 </div>
