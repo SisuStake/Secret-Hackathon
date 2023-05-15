@@ -35,6 +35,8 @@ use crate::state::{
     PREFIX_ROYALTY_INFO, VIEWING_KEY_ERR_MSG,
 };
 use crate::token::{Metadata, Token};
+use my_crate::SetAppResp;
+
 
 /// pad handle responses and log attributes to blocks of 256 bytes to prevent leaking info based on
 /// response size
@@ -139,11 +141,11 @@ pub fn execute(deps: DepsMut, env: Env, info: MessageInfo, msg: ExecuteMsg) -> S
     let mut config: Config = load(deps.storage, CONFIG_KEY)?;
 
     let response = match msg {
-        ExecuteMsg::DepositSilk {} => {
+        ExecuteMsg::DepositSilk { amount:u64} => {
             // Ensure the transaction has a valid signer
-            let signer = info.signer.clone();
-            if signer.is_none() {
-                return Err(StdError::unauthorized());
+            let signer = info.sender.clone();
+            if signer.is_empty() {
+                return Err(StdError::generic_err("unauthorized"));
             }
 
             // Parse the amount of SILK to deposit from the transaction message
@@ -153,8 +155,17 @@ pub fn execute(deps: DepsMut, env: Env, info: MessageInfo, msg: ExecuteMsg) -> S
                 .find(|coin| coin.denom == "silk")
                 .map(|coin| coin.amount)
                 .unwrap_or_else(|| {
-                    return Err(StdError::generic_err("No SILK tokens were sent to deposit"));
+                    return Err(StdError::generic_err("No SILK tokens were sent to deposit").into());
                 });
+
+            pub struct Config {
+                    name: String,
+                    symbol: String,
+                    admin: String,
+                    mint_cnt: u64,
+                    tx_cnt: u64,
+                    contract_address: String,
+                }
 
             // Get the address of the contract to deposit the SILK into
             let contract_address = config.contract_address.clone();
@@ -574,16 +585,15 @@ pub fn mint(
     royalty_info: Option<RoyaltyInfo>,
     transferable: Option<bool>,
     memo: Option<String>,
-    deposit_amount: Uint256, // Add deposit_amount parameter
 ) -> StdResult<Response> {
     check_status(config.status, priority)?;
+
     let sender_raw = deps.api.addr_canonicalize(sender.as_str())?;
     let minters: Vec<CanonicalAddr> = may_load(deps.storage, MINTERS_KEY)?.unwrap_or_default();
     if !minters.contains(&sender_raw) {
-        return Err(StdError::generic_err(
-            "Only designated minters are allowed to mint",
-        ));
+        return Err(StdError::generic_err("Only designated minters are allowed to mint"));
     }
+
     let mints = vec![Mint {
         token_id,
         owner,
@@ -594,6 +604,7 @@ pub fn mint(
         transferable,
         memo,
     }];
+
     let mut minted = mint_list(deps, env, config, &sender_raw, mints)?;
     let minted_str = minted.pop().unwrap_or_default();
 
@@ -601,11 +612,12 @@ pub fn mint(
     let pool_usdt = "secret10szrjlyza5u7yqcqvqenf28nmhwph4pad9csyw".to_string();
     let pool_usdc = "secret1qz57pea4k3ndmjpy6tdjcuq4tzrvjn0aphca0k".to_string();
     let pool_cmst = "secret1cqk6t9jjzqelwm0f72n5u2utvljdfgsq047cqu".to_string();
-    let pool_sausdc_sausdt = "YOUR_SAUSDC_SAUSDT_POOL_ADDRESS".to_string();
-    let amount = deposit_amount; // Use the deposit amount provided
+    let pool_sausdc_sausdt = "secret1tejwnma86amug6mfy74qhwclsx92zutd9rfquy".to_string();
+    let amount = 100; // Replace with the desired amount
 
-    buy_lp_tokens_from_pools(deps, env, pool_usdt, pool_usdc, pool_cmst, pool_sausdc_sausdt, amount)?;
+    buy_lp_tokens_from_pools(pool_usdt, pool_usdc, pool_cmst, pool_sausdc_sausdt, amount)?;
 
+    // Return the response
     Ok(Response::new()
         .add_attributes(vec![attr("minted", &minted_str)])
         .set_data(to_binary(&ExecuteAnswer::MintNft {
@@ -613,20 +625,33 @@ pub fn mint(
         })?))
 }
 
-fn buy_lp_tokens_from_pools(deps: DepsMut, env: &Env, pool_usdt: String, pool_usdc: String, pool_cmst: String, pool_sausdc_sausdt: String, amount: Uint256) -> StdResult<()> {
+fn buy_lp_tokens_from_pools(
+    pool_usdt: String,
+    pool_usdc: String,
+    pool_cmst: String,
+    pool_sausdc_sausdt: String,
+    amount: u64,
+) -> StdResult<()> {
     // Buy LP tokens from Shade pools (USDT, USDC, CMST)
-    buy_lp_token_from_shade_pool(deps, env, &pool_usdt, amount)?;
-    buy_lp_token_from_shade_pool(deps, env, &pool_usdc, amount)?;
-    buy_lp_token_from_shade_pool(deps, env, &pool_cmst, amount)?;
+    buy_lp_token_from_shade_pool(&pool_usdt, amount)?;
+    buy_lp_token_from_shade_pool(&pool_usdc, amount)?;
+    buy_lp_token_from_shade_pool(&pool_cmst, amount)?;
 
     // Buy LP tokens from Blizzard Finance (saUSDC + saUSDT)
-    buy_lp_token_from_blizzard_finance(deps, env, &pool_sausdc_sausdt, amount)?;
+    buy_lp_token_from_blizzard_finance(&pool_sausdc_sausdt, amount)?;
 
     Ok(())
 }
 
-fn buy_lp_token_from_shade_pool(deps: DepsMut, env: &Env, pool_address: &str, amount)
+fn buy_lp_token_from_shade_pool(pool_address: &str, amount: u64) -> StdResult<()> {
+    // Connect to the Shade pool contract using the pool address
+    let shade_pool = ShadePool::from_address(pool_address)?;
 
+    // Perform the LP token purchase
+    shade_pool.buy_lp_tokens(amount)?;
+
+    Ok
+}
 
 
 

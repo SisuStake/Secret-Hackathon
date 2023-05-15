@@ -104,6 +104,8 @@ pub struct PostInstantiateCallback {
 pub enum ExecuteMsg {
     /// mint new token
     MintNft {
+        ///Deposit Silk
+        DepositSilk : amount: u64,
         /// optional token id. if omitted, use current token index
         token_id: Option<String>,
         /// optional owner address. if omitted, owned by the message sender
@@ -123,6 +125,7 @@ pub enum ExecuteMsg {
         memo: Option<String>,
         /// optional message length padding
         padding: Option<String>,
+    
     },
     /// Mint multiple tokens
     BatchMintNft {
