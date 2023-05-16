@@ -8,5 +8,5 @@
   <td>{data.volume}</td>
   <td>{data.apy}</td>
   <td>{data.totalFees}</td>
-  <td>{data.total}</td>
+  <td>{data.value}</td>
 </tr>
