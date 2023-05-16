@@ -15,6 +15,7 @@ mod tests {
     };
     use crate::royalties::{DisplayRoyalty, DisplayRoyaltyInfo, Royalty, RoyaltyInfo};
     use crate::state::{load, Config, CONFIG_KEY};
+    use serde::Serialize;
 
     // Helper functions
 
@@ -269,7 +270,7 @@ mod tests {
         let post_init_msg = to_binary(&ExecuteMsg::MakeOwnershipPrivate { padding: None }).unwrap();
         let post_init_send = vec![Coin {
             amount: Uint128::new(100),
-            denom: "uscrt".to_string(),
+            denom: "silk".to_string(),
         }];
         let post_init_callback = Some(PostInstantiateCallback {
             msg: post_init_msg.clone(),
@@ -644,6 +645,7 @@ mod tests {
         assert!(handle_result.is_ok());
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("default".to_string()),
             owner: Some(alice.clone()),
             public_metadata: None,
@@ -697,6 +699,7 @@ mod tests {
         }
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("specified".to_string()),
             owner: None,
             public_metadata: None,

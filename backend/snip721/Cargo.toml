@@ -1,7 +1,7 @@
 [package]
 name = "snip721-reference-impl"
 version = "1.0.0"
-authors = ["bill wincer"]
+authors = ["yoo"]
 edition = "2021"
 
 exclude = [
@@ -40,8 +40,8 @@ serde = { version = "1.0.154", default-features = false, features = ["derive"] }
 bincode2 = "2.0.1"
 base64 = "0.21.0"
 primitive-types = { version = "0.12.1", default-features = false }
-
-
+my_crate = "0.1.0"
+#secret_contract = { git = "https://github.com/scrtlabs/secret-template", branch = "master" }
 
 
 [dev-dependencies]

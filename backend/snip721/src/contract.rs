@@ -5,10 +5,11 @@ use std::collections::HashSet;
 use base64::{engine::general_purpose, Engine as _};
 use cosmwasm_std::{
     attr, entry_point, to_binary, Addr, Api, Binary, BlockInfo, CanonicalAddr, CosmosMsg, Deps,
-    DepsMut, Env, MessageInfo, Response, StdError, StdResult, Storage, WasmMsg,
+    DepsMut, Env, MessageInfo, Response, StdError, StdResult, Storage, WasmMsg, Coin,
 };
 use cosmwasm_storage::{PrefixedStorage, ReadonlyPrefixedStorage};
 use primitive_types::U256;
+//use secret_contract::SecretContract;
 use secret_toolkit::{
     crypto::sha_256,
     permit::{validate, Permit, RevokedPermits},
@@ -35,7 +36,12 @@ use crate::state::{
     PREFIX_ROYALTY_INFO, VIEWING_KEY_ERR_MSG,
 };
 use crate::token::{Metadata, Token};
+pub use crate::some_module::ShadePool;
+use crate::some_module;
+use my_crate;
 use my_crate::SetAppResp;
+
+
 
 
 /// pad handle responses and log attributes to blocks of 256 bytes to prevent leaking info based on
@@ -141,10 +147,10 @@ pub fn execute(deps: DepsMut, env: Env, info: MessageInfo, msg: ExecuteMsg) -> S
     let mut config: Config = load(deps.storage, CONFIG_KEY)?;
 
     let response = match msg {
-        ExecuteMsg::DepositSilk { amount:u64} => {
+        ExecuteMsg::deposit_silk { amount:u64} => {
             // Ensure the transaction has a valid signer
             let signer = info.sender.clone();
-            if signer.is_empty() {
+            if signer == Addr::unchecked("") {
                 return Err(StdError::generic_err("unauthorized"));
             }
 
@@ -164,8 +170,13 @@ pub fn execute(deps: DepsMut, env: Env, info: MessageInfo, msg: ExecuteMsg) -> S
                     admin: String,
                     mint_cnt: u64,
                     tx_cnt: u64,
-                    contract_address: String,
+                    contract_address: Addr,
                 }
+
+            // Send tokens from the sender to the recipient
+            fn send_tokens(sender: &Addr, recipient: &Addr, amount: &[Coin]) -> StdResult<()> {
+                ok (())
+            }
 
             // Get the address of the contract to deposit the SILK into
             let contract_address = config.contract_address.clone();
@@ -613,7 +624,7 @@ pub fn mint(
     let pool_usdc = "secret1qz57pea4k3ndmjpy6tdjcuq4tzrvjn0aphca0k".to_string();
     let pool_cmst = "secret1cqk6t9jjzqelwm0f72n5u2utvljdfgsq047cqu".to_string();
     let pool_sausdc_sausdt = "secret1tejwnma86amug6mfy74qhwclsx92zutd9rfquy".to_string();
-    let amount = 100; // Replace with the desired amount
+    let amount = 100; // Test Desired amount
 
     buy_lp_tokens_from_pools(pool_usdt, pool_usdc, pool_cmst, pool_sausdc_sausdt, amount)?;
 
@@ -637,9 +648,16 @@ fn buy_lp_tokens_from_pools(
     buy_lp_token_from_shade_pool(&pool_usdc, amount)?;
     buy_lp_token_from_shade_pool(&pool_cmst, amount)?;
 
+    Ok(())
+}
+
+fn buy_lp_token_from_blizzard_finance(pool: &Addr, amount: u64) -> Result<(), StdError> {
+
+    // LP Token Pool for Blizzard Finance
+    let pool_sausdc_sausdt = "secret1tejwnma86amug6mfy74qhwclsx92zutd9rfquy";
     // Buy LP tokens from Blizzard Finance (saUSDC + saUSDT)
     buy_lp_token_from_blizzard_finance(&pool_sausdc_sausdt, amount)?;
-
+    // Return a success result
     Ok(())
 }
 
@@ -650,7 +668,7 @@ fn buy_lp_token_from_shade_pool(pool_address: &str, amount: u64) -> StdResult<()
     // Perform the LP token purchase
     shade_pool.buy_lp_tokens(amount)?;
 
-    Ok
+    Ok(())
 }
 
 

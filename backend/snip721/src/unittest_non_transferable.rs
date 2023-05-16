@@ -22,6 +22,7 @@ mod tests {
         PREFIX_MAP_TO_INDEX,
     };
     use crate::token::{Extension, Metadata, Token};
+    use serde::Serialize;
 
     // Helper functions
 
@@ -736,6 +737,7 @@ mod tests {
         let alice = "alice".to_string();
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),            
             token_id: Some("NFT1".to_string()),
             owner: Some(alice.clone()),
             public_metadata: Some(public_meta.clone()),
@@ -954,6 +956,7 @@ mod tests {
         assert!(handle_result.is_ok());
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100), 
             token_id: Some("NFT1".to_string()),
             owner: Some(alice.clone()),
             public_metadata: None,

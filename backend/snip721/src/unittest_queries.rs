@@ -230,6 +230,7 @@ mod tests {
         );
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -255,6 +256,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT2".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -352,6 +354,7 @@ mod tests {
         );
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -377,6 +380,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT2".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -435,6 +439,7 @@ mod tests {
         );
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -460,6 +465,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT2".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -485,6 +491,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT3".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -591,6 +598,7 @@ mod tests {
         );
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -616,6 +624,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT2".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -641,6 +650,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT3".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -666,6 +676,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT5".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -691,6 +702,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT4".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: Some(Metadata {
@@ -850,6 +862,7 @@ mod tests {
         let charlie = "charlie".to_string();
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some(alice.clone()),
             public_metadata: Some(public_meta.clone()),
@@ -968,6 +981,7 @@ mod tests {
         );
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some(alice.clone()),
             public_metadata: Some(public_meta.clone()),
@@ -1370,6 +1384,7 @@ mod tests {
             init_result.err().unwrap()
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some(alice.clone()),
             public_metadata: Some(public_meta.clone()),
@@ -1594,6 +1609,7 @@ mod tests {
         );
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -1611,6 +1627,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT2".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -1628,6 +1645,7 @@ mod tests {
             execute_msg,
         ); // test burn when status prevents it
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT3".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -1645,6 +1663,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT4".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -1662,6 +1681,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT5".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -1679,6 +1699,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT6".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -1696,6 +1717,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT7".to_string()),
             owner: Some("bob".to_string()),
             public_metadata: None,
@@ -1713,6 +1735,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT8".to_string()),
             owner: Some("charlie".to_string()),
             public_metadata: None,
@@ -2005,6 +2028,7 @@ mod tests {
         );
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -2022,6 +2046,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT2".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -2039,6 +2064,7 @@ mod tests {
             execute_msg,
         ); // test burn when status prevents it
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT3".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -2056,6 +2082,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT4".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -2073,6 +2100,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT5".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -2090,6 +2118,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT6".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -2107,6 +2136,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT7".to_string()),
             owner: Some("bob".to_string()),
             public_metadata: None,
@@ -2124,6 +2154,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT8".to_string()),
             owner: Some("charlie".to_string()),
             public_metadata: None,
@@ -2141,6 +2172,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT9".to_string()),
             owner: Some("charlie".to_string()),
             public_metadata: None,
@@ -2364,6 +2396,7 @@ mod tests {
             _ => panic!("unexpected"),
         }
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -2431,6 +2464,7 @@ mod tests {
         );
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -2534,6 +2568,7 @@ mod tests {
         );
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some("alice".to_string()),
             public_metadata: None,
@@ -2846,6 +2881,7 @@ mod tests {
             extension: None,
         };
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some(alice),
             public_metadata: Some(public_meta.clone()),
@@ -2926,6 +2962,7 @@ mod tests {
 
         // test unable to have both token_uri and extension in the metadata
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFTfail".to_string()),
             owner: Some(alice.clone()),
             public_metadata: Some(meta_for_fail),
@@ -2946,6 +2983,7 @@ mod tests {
         assert!(error.contains("Metadata can not have BOTH token_uri AND extension"));
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some(alice.clone()),
             public_metadata: Some(public_meta.clone()),
@@ -2997,6 +3035,7 @@ mod tests {
         }
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT2".to_string()),
             owner: Some(alice.clone()),
             public_metadata: None,
@@ -3082,6 +3121,7 @@ mod tests {
             }),
         };
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some(alice),
             public_metadata: None,
@@ -3203,6 +3243,7 @@ mod tests {
             }),
         };
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some(alice.clone()),
             public_metadata: None,
@@ -3418,6 +3459,7 @@ mod tests {
         assert!(error.contains("You are not authorized to view approvals for token NFT1"));
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: Some(alice),
             public_metadata: None,
@@ -3887,6 +3929,7 @@ mod tests {
         let nft5 = "NFT5".to_string();
 
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some(nft1.clone()),
             owner: Some(alice.clone()),
             public_metadata: None,
@@ -3904,6 +3947,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some(nft2.clone()),
             owner: Some(alice),
             public_metadata: None,
@@ -3921,6 +3965,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some(nft3.clone()),
             owner: Some(bob),
             public_metadata: None,
@@ -3938,6 +3983,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some(nft4.clone()),
             owner: Some(charlie.clone()),
             public_metadata: None,
@@ -3955,6 +4001,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some(nft5.clone()),
             owner: Some(david),
             public_metadata: None,
@@ -4120,6 +4167,7 @@ mod tests {
             _ => panic!("unexpected"),
         }
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),  
             token_id: Some("NFT1".to_string()),
             owner: None,
             public_metadata: None,
@@ -4137,6 +4185,7 @@ mod tests {
             execute_msg,
         );
         let execute_msg = ExecuteMsg::MintNft {
+            deposit_silk: Some(100),   
             token_id: Some("NFT2".to_string()),
             owner: None,
             public_metadata: None,
