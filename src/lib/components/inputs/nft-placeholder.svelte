@@ -1,10 +1,11 @@
 <style>
-  div {
-    min-height: 20px;
-    max-width: 300px;
-    background: rgb(225, 225, 225);
+  img {
+    display: block;
     margin-bottom: 16px;
+    max-width: 350px;
+    max-height: 100%;
+    border-radius: 8px;
   }
 </style>
 
-<div id="nft-placholder"></div>
+<img src="/static/stable-angel.png" alt="Stable Angel NFT">
