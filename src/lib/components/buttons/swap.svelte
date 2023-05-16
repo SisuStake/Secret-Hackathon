@@ -4,5 +4,5 @@
   }
 </style>
 
-<button>Swap</button>
+<button class="btn btn-primary">Swap</button>
 

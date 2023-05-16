@@ -16,6 +16,7 @@
     border: 1px solid rgb(0, 0, 0);
     border-radius: 8px;
     padding: 16px;
+    text-align: center;
   }
 
   fieldset {
