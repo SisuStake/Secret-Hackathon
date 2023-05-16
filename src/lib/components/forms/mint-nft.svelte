@@ -22,7 +22,6 @@
 <form action="#" id="mint-nft-form">
   <h1>Mint NFT</h1>
   <CoinInput id='coin-1-input' coins={coins} />
-  <CoinInput id='coin-2-input' coins={coins}/>
 
   <NFTPlaceholder />
 
